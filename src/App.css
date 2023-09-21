@@ -64,7 +64,12 @@
   letter-spacing: .04em;
   color: rgba(0, 0, 0, 0.6);
 }
+.clsLogo{
+  width: 100px !important;
+  display: flex;
+  margin-right: 20px;
 
+}
 .dropDownGrid {
   position: relative;
   left: 34px;
@@ -98,8 +103,14 @@
   color: rgb(0, 0, 0, 0.6);
 
 }
+.btncolor{
+  color: rgb(0, 0, 0, 0.6) !important;
+}
 
 .cartContainer {
   margin: 2% 10% 5% 10%;
   padding: 25px;
+}
+.MuiButtonBase-root {
+  text-transform: none !important;
 }

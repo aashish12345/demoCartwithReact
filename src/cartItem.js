@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Card, CardMedia, CardContent, Typography, Grid, MenuItem, Select, Button } from "@mui/material";
 
 const CartItem = (props) => {
-    const { title, description, itemsize, qantity, unitPrice } = props.item;
+    const { title, description, itemsize, qantity, unitPrice ,imageUrl } = props.item;
     const [size, setSize] = useState(itemsize);
     const [production, setproduction] = useState('Standard');
     const [quantity, setQuantity] = useState(qantity);
@@ -35,7 +35,7 @@ const CartItem = (props) => {
                                 className="cardMedia"
                                 component="img"
                                 alt="Paella dish"
-                                image="https://source.unsplash.com/random"
+                                image={imageUrl}
                                 title="Live from space album cover"
                             />
                         </Grid>

@@ -1,23 +1,16 @@
-import { useState, useEffect } from 'react';
+import { useState} from 'react';
 import { AppBar, Box, Toolbar, IconButton, Typography, Menu, Container, Avatar, Button, Tooltip, MenuItem, CardMedia } from "@mui/material";
 
 const pages = ['Department', 'Services', 'My Items'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function Header() {
-    const [anchorElNav, setAnchorElNav] = useState(null);
     const [anchorElUser, setAnchorElUser] = useState(null);
 
-    const handleOpenNavMenu = (event) => {
-        setAnchorElNav(event.currentTarget);
-    };
+   
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
-    };
-
-    const handleCloseNavMenu = () => {
-        setAnchorElNav(null);
-    };
+    };  
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
@@ -39,7 +32,7 @@ function Header() {
                         {pages.map((page) => (
                             <Button
                                 key={page}                                
-                                onClick={handleCloseNavMenu}
+                                
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             > {page}
                             </Button>

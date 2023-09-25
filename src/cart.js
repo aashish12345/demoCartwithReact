@@ -3,11 +3,11 @@ import { useState } from "react";
 
 import { Card, Button, CardContent, Checkbox, Grid, FormGroup, FormControlLabel } from "@mui/material";
 const Cart = () => {
-    // const finalPrice = 600;
+    const vat = 2.0;
     let data = [{
         "_id": "64e5ff4fe3d35d1c4044a1de",
         "title": "Custom Shoe Boxes",
-        "description": "Eco-friendly and Sustainable, the preferred packaging choice for Direct to Consumer and subscription box businesses. The Mailer style box offers the ideal unboxing experience.",
+        "description": "Eco-friendly and Sustainable, the preferred packaging choice for Direct to Consumer and subscription box businesses.",
         "qantity": "1",
         "unitPrice": "20",
         "imageUrl": "./shoeBoxNew.jpeg"
@@ -75,21 +75,23 @@ const Cart = () => {
             }
             <Card className="cartContainer">
                 <CardContent>
+                    <Grid xs={12} container>
+                        <FormGroup>
+                            {
+                                chkJson.map((item) => {
+                                    return <FormControlLabel control={<Checkbox value={item.val} id={item._id} onChange={(value) => handleChange(value)} />} label={item.text} />
+                                })
+                            }
+                        </FormGroup>
+                    </Grid>
+                    <Grid xs={12} className="clsGridPrice clsGridTotalPrice">
+                        <Grid className="borderBottamDiv"> <span>Subtotal (Incl. VAT)</span> <span className="spnPrice">{`$ ${finalPrice.toFixed(2)}`}</span></Grid>
+                        <Grid className="borderBottamDiv"> <span>Shipping</span> <span className="spnPrice">{ }</span></Grid>
+                        <Grid className="borderBottamDiv"> <span>VAT</span> <span className="spnPrice">{`$ ${vat.toFixed(2)}`}</span></Grid>
+                        <Grid className="borderBottamDiv"> <span>TOTAL (EUR)</span> <span className="spnPrice">{`$ ${finalPrice.toFixed(2)}`}</span></Grid>
+                    </Grid>
                     <Grid container>
-                        <Grid xs={10}>
-                            <FormGroup>
-                                {
-                                    chkJson.map((item) => {
-                                        return <FormControlLabel control={<Checkbox value={item.val} id={item._id} onChange={(value) => handleChange(value)} />} label={item.text} />
-                                    })
-                                }
-                            </FormGroup>
-                        </Grid>
-                        <Grid xs={2} className="clsGridPrice">
-                            <span>Cart Total</span> <span className="spnPrice">{`$ ${finalPrice.toFixed(2)}`}</span>
-                            <Button className="btnCart" variant="contained">Checkout</Button>
-                        </Grid>
-
+                        <Button className="btnCart" variant="contained">Checkout</Button>
                     </Grid>
                 </CardContent>
             </Card>

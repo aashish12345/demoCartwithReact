@@ -100,7 +100,7 @@ const CartItem = (props) => {
                                 </Grid>
                             </Grid>
 
-                            <Grid className="sizeGrid">
+                            {/* <Grid className="sizeGrid">
                                 <Grid item xs={4} className="gridLable">
                                     <span> Production</span>
                                 </Grid>
@@ -116,7 +116,7 @@ const CartItem = (props) => {
                                         <MenuItem value={"Rush"}>Rush</MenuItem>
                                     </Select>
                                 </Grid>
-                            </Grid>
+                            </Grid> */}
                         </Grid>
                         <Grid item xs={3} className="clsGridPrice">
                             <Grid><span>Unit Price</span> <span className="spnPrice">{`$ ${Number(unitPrice).toFixed(2)}`}</span></Grid>

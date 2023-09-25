@@ -58,27 +58,62 @@
 }
 
 .clsGridPrice {
-  font-size: 15px;
+  font-size: 14px;
   font-style: normal;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: .04em;
+  float: right;
   color: rgba(0, 0, 0, 0.6);
 }
-.clsLogo{
+
+.clsGridTotalPrice {
+  width: 40%;
+  margin-top: 8%;
+  display: block;
+}
+
+.clsGridTotalPrice div span:nth-of-type(1) {
+  float: left;
+  text-align: left;
+  margin-right: 20px;
+  position: relative;
+  top: 8px;
+
+}
+
+
+.clsGridTotalPrice div span:nth-of-type(2) {
+  float: right;
+  text-align: right;
+  margin-right: 20px;
+  position: relative;
+  top: 8px;
+  font-weight: 700;
+
+}
+
+.clsGridTotalPrice div {
+  margin-bottom: 10%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+
+}
+
+.clsLogo {
   width: 100px !important;
   display: flex;
   margin-right: 20px;
 
 }
+
 .dropDownGrid {
   position: relative;
   left: 34px;
 }
 
 .btnCart {
-  position: relative;
+  left: 91%;
   top: 67px;
-  left: 172px;
+  margin-bottom: 10% !important;
 }
 
 .btnRemove {
@@ -103,7 +138,8 @@
   color: rgb(0, 0, 0, 0.6);
 
 }
-.btncolor{
+
+.btncolor {
   color: rgb(0, 0, 0, 0.6) !important;
 }
 
@@ -111,6 +147,7 @@
   margin: 2% 10% 5% 10%;
   padding: 25px;
 }
+
 .MuiButtonBase-root {
   text-transform: none !important;
 }

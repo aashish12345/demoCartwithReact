@@ -40,17 +40,15 @@
 
 .gridLable {
   float: left;
-  width: 40%;
-  text-align: left;
-  font-weight: bold;
-  color: rgba(0, 0, 0, 0.6);
+  width: 50%;
+  text-align: center;
+  top: 3%;  
 }
 
 .gridDrop {
   float: right;
-  width: 60%;
-  font-weight: bold;
-  color: rgba(0, 0, 0, 0.6);
+  width: 50%;
+ 
 }
 
 .spnPrice {
@@ -58,12 +56,7 @@
 }
 
 .clsGridPrice {
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 500;
-  letter-spacing: .04em;
   float: right;
-  color: rgba(0, 0, 0, 0.6);
 }
 
 .clsGridTotalPrice {
@@ -90,6 +83,43 @@
   top: 8px;
   font-weight: 700;
 
+}
+
+.grdHeader {
+  margin-top: 30px !important;
+  ;
+}
+
+.grdHeader span {
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 900;
+  letter-spacing: .04em;
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.clsItem {
+  position: relative;
+  left: 0%;
+}
+
+.clsQuantity {
+  position: relative;
+}
+
+.txtclass {
+  width: 40px;
+  text-align: right;
+}
+
+.clsPrice {
+  position: relative;
+  left: 6%
+}
+
+.clsTotal {
+  position: relative;
+  right: 2%;
 }
 
 .clsGridTotalPrice div {
@@ -126,6 +156,7 @@
 
 .sizeGrid {
   position: relative;
+  text-align: right;
   height: 30%;
 }
 

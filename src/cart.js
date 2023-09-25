@@ -68,6 +68,20 @@ const Cart = () => {
         <><div className="spnTotalCart">
             <span>{`Your Cart (${jsonData.length})`}</span>
         </div>
+            <Grid container className="grdHeader">
+                <Grid xs={4} className="clsItem">
+                    <span>Item</span>
+                </Grid>
+                <Grid xs={3} className="clsPrice">
+                    <span>Price</span>
+                </Grid>
+                <Grid xs={3} className="clsQuantity">
+                    <span>Quantity</span>
+                </Grid>
+                <Grid xs={1} className="clsTotal">
+                    <span> Total</span>
+                </Grid>
+            </Grid>
             {
                 jsonData.map((item) => {
                     return (<CartItem item={item} />)

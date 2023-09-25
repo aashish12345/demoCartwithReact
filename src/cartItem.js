@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { Card, CardMedia, CardContent, Typography, Grid, MenuItem, Select, Button } from "@mui/material";
+import { Card, CardMedia, CardContent, Typography, Grid, TextField, Select, Button } from "@mui/material";
 
-const CartItem = (props) => {   
-    const { title, description, itemsize, qantity, unitPrice ,imageUrl } = props.item;
+const CartItem = (props) => {
+    const { title, description, itemsize, qantity, unitPrice, imageUrl } = props.item;
     const [size, setSize] = useState(itemsize);
     const [production, setproduction] = useState('Standard');
     const [quantity, setQuantity] = useState(qantity);
@@ -15,7 +15,7 @@ const CartItem = (props) => {
     }
     const handleChangeQuantity = (event) => {
         setQuantity(event.target.value);
-        updateTotalPrice(event.target.value); 
+        updateTotalPrice(event.target.value);
     }
     const updateTotalPrice = (quan) => {
         setUnitTotal(quan * unitPrice)
@@ -61,42 +61,14 @@ const CartItem = (props) => {
                             >Remove</Button>
                         </Grid>
                         <Grid item xs={4} className="dropDownGrid">
-                            {/* <Grid className="sizeGrid">
-                                <Grid item xs={4} className="gridLable">
-                                    <span> Size</span>
-                                </Grid>
-                                <Grid item xs={8} className="gridDrop">
-                                    <Select
-                                        value={size}
-                                        className="ddlcls"
-                                        onChange={handleChange}
-                                        displayEmpty
-                                        inputProps={{ 'aria-label': 'Without label' }}
-                                    >
-                                        <MenuItem value={"Small"}>Small</MenuItem>
-                                        <MenuItem value={"Medium"}>Medium</MenuItem>
-                                        <MenuItem value={"Large"}>Large</MenuItem>
-                                        <MenuItem value={"ExtraLarge"}>Extra-Large</MenuItem>
-                                    </Select>
-                                </Grid>
-                            </Grid> */}
-
                             <Grid className="sizeGrid">
-                                <Grid item xs={4} className="gridLable">
-                                    <span> Quantity</span>
+                                <Grid item xs={6} className="gridLable">
+                                    <span> {`$ ${Number(unitPrice).toFixed(2)}`}</span>
                                 </Grid>
-                                <Grid item xs={8} className="gridDrop">
-                                    <Select
-                                        value={quantity}
-                                        className="ddlcls"
-                                        onChange={handleChangeQuantity}
-                                        displayEmpty
-                                        inputProps={{ 'aria-label': 'Without label' }}
-                                    >
-                                        <MenuItem value={1}>One</MenuItem>
-                                        <MenuItem value={2}>Two</MenuItem>
-                                        <MenuItem value={3}>Three</MenuItem>
-                                    </Select>
+                                <Grid item xs={6} className="gridDrop">
+                                <TextField className="txtclass" id="standard-basic" value={qantity} variant="standard" />
+                                   {/* <span>{qantity}</span> */}
+
                                 </Grid>
                             </Grid>
 
@@ -119,8 +91,9 @@ const CartItem = (props) => {
                             </Grid> */}
                         </Grid>
                         <Grid item xs={3} className="clsGridPrice">
-                            <Grid><span>Unit Price</span> <span className="spnPrice">{`$ ${Number(unitPrice).toFixed(2)}`}</span></Grid>
-                            <Grid><span>Unit Total</span> <span className="spnPrice">{`$ ${Number(unitTotal).toFixed(2)}`}</span></Grid>
+                            <span className="spnPrice">{`$ ${Number(unitTotal).toFixed(2)}`}</span>
+                            {/* <Grid><span>Unit Price</span> <span className="spnPrice">{`$ ${Number(unitPrice).toFixed(2)}`}</span></Grid>
+                            <Grid><span>Unit Total</span> <span className="spnPrice">{`$ ${Number(unitTotal).toFixed(2)}`}</span></Grid> */}
                         </Grid>
                     </Grid>
                 </CardContent>

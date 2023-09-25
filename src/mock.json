@@ -8,15 +8,6 @@
             "qantity":"10",
             "unitPrice":"20",
             "imageUrl":"./shoeBoxNew.jpeg"
-        },
-          {
-            "_id": "64e5ff4fe3d35d1c4044a1de",
-            "title": "Carbon Neutral Order",
-            "description": "Eco-friendly and Sustainable, the preferred packaging choice for Direct to Consumer and subscription box businesses. The Mailer style box offers the ideal unboxing experience.",
-            "itemsize":"Large",
-            "qantity":"20",
-            "unitPrice":"10",
-            "imageUrl":"./nike.jpeg"
-        }
+        }        
     ]
 }

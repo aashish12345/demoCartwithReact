@@ -1,34 +1,93 @@
 import CartItem from "./cartItem";
-import jsonData from "./mock.json";
+import { useState } from "react";
+
 import { Card, Button, CardContent, Checkbox, Grid, FormGroup, FormControlLabel } from "@mui/material";
 const Cart = () => {
-    const data = jsonData.data;
-    const finalPrice = 600;
+    // const finalPrice = 600;
+    let data = [{
+        "_id": "64e5ff4fe3d35d1c4044a1de",
+        "title": "Custom Shoe Boxes",
+        "description": "Eco-friendly and Sustainable, the preferred packaging choice for Direct to Consumer and subscription box businesses. The Mailer style box offers the ideal unboxing experience.",
+        "qantity": "1",
+        "unitPrice": "20",
+        "imageUrl": "./shoeBoxNew.jpeg"
+    }]
+    const [jsonData, setJsonData] = useState(data)
+    const [finalPrice, setFinalPrice] = useState(20);
+
+    let chkJson = [{
+        "_id": "64e5ff4fe3d35d1c40333a1de",
+        "text": "Buy online pick up in stores/lockers - 12 grams of C02",
+        "val": "1",
+    }, {
+        "_id": "64e5ff4fe3d35d1cgg44a1de",
+        "text": "Ecocart- carbon offsetting -2 USD",
+        "val": "2",
+    }, {
+        "_id": "64e5ff4fe3d35d1c404dd1de",
+        "text": "Consolidate multiple orders -8 grams of CO2",
+        "val": "1",
+    }, {
+        "_id": "64e5ff4fe3d35d1c4044a1ww",
+        "text": "Standard delivery instead of same day delivery SDD/NDD -6 grams of Co2",
+        "val": "3",
+    }, {
+        "_id": "64e5ff4few3d35d1c4044a1de",
+        "text": "Normal delivery with all emissions",
+        "val": "1",
+    }]
+    const handleChange = (event) => {
+        debugger;
+        const ID = event.currentTarget.id;
+        const value = event.currentTarget.value;
+        if (event.currentTarget.checked) {
+            const item = {
+                "_id": ID,
+                "title": "Ecocart- carbon offsetting ",
+                "description": "",
+                "qantity": "1",
+                "unitPrice": value,
+                "imageUrl": "./logo4.jpeg",
+                "isFixed": true
+            }
+            setJsonData(current => [...current, item]);
+            setFinalPrice(finalPrice + parseInt(value));
+        } else {
+            setJsonData(current =>
+                current.filter(item => {
+                    return item._id !== ID;
+                }),
+            );
+        }
+
+
+    }
+
+
     return (
         <><div className="spnTotalCart">
-            <span>{`Your Cart (${data.length})`}</span>
+            <span>{`Your Cart (${jsonData.length})`}</span>
         </div>
             {
-                data.map((item) => {
+                jsonData.map((item) => {
                     return (<CartItem item={item} />)
                 })
             }
             <Card className="cartContainer">
                 <CardContent>
                     <Grid container>
-                        <Grid xs={6}>
-                            <div>
-                                <FormGroup>
-                                    <FormControlLabel control={<Checkbox defaultChecked />} label="Special PriceGet extra 19% off" />
-                                    <FormControlLabel required control={<Checkbox />} label="Partner OfferSign-up for Flipkart Pay Later & get free" />
-                                    <FormControlLabel control={<Checkbox />} label="Bank OfferFlat $20 off on Bank Credit/Debit Card" />
-                                </FormGroup>
-                            </div>
+                        <Grid xs={10}>
+                            <FormGroup>
+                                {
+                                    chkJson.map((item) => {
+                                        return <FormControlLabel control={<Checkbox value={item.val} id={item._id} onChange={(value) => handleChange(value)} />} label={item.text} />
+                                    })
+                                }
+                            </FormGroup>
                         </Grid>
-                        <Grid xs={6} className="clsGridPrice">
+                        <Grid xs={2} className="clsGridPrice">
                             <span>Cart Total</span> <span className="spnPrice">{`$ ${finalPrice.toFixed(2)}`}</span>
                             <Button className="btnCart" variant="contained">Checkout</Button>
-
                         </Grid>
 
                     </Grid>

@@ -1,14 +1,12 @@
 import { useState, useEffect } from "react";
 import { Card, CardMedia, CardContent, Typography, Grid, MenuItem, Select, Button } from "@mui/material";
 
-const CartItem = (props) => {
+const CartItem = (props) => {   
     const { title, description, itemsize, qantity, unitPrice ,imageUrl } = props.item;
     const [size, setSize] = useState(itemsize);
     const [production, setproduction] = useState('Standard');
     const [quantity, setQuantity] = useState(qantity);
     const [unitTotal, setUnitTotal] = useState();
-
-
     const handleChange = (event) => {
         setSize(event.target.value);
     };
@@ -52,7 +50,6 @@ const CartItem = (props) => {
                                 className="cardDescription"
                                 color="textSecondary"
                                 variant="div"
-
                             >
                                 {description}
                             </Typography>
@@ -64,7 +61,7 @@ const CartItem = (props) => {
                             >Remove</Button>
                         </Grid>
                         <Grid item xs={4} className="dropDownGrid">
-                            <Grid className="sizeGrid">
+                            {/* <Grid className="sizeGrid">
                                 <Grid item xs={4} className="gridLable">
                                     <span> Size</span>
                                 </Grid>
@@ -82,7 +79,7 @@ const CartItem = (props) => {
                                         <MenuItem value={"ExtraLarge"}>Extra-Large</MenuItem>
                                     </Select>
                                 </Grid>
-                            </Grid>
+                            </Grid> */}
 
                             <Grid className="sizeGrid">
                                 <Grid item xs={4} className="gridLable">
@@ -96,9 +93,9 @@ const CartItem = (props) => {
                                         displayEmpty
                                         inputProps={{ 'aria-label': 'Without label' }}
                                     >
-                                        <MenuItem value={10}>Ten</MenuItem>
-                                        <MenuItem value={20}>Twenty</MenuItem>
-                                        <MenuItem value={30}>Thirty</MenuItem>
+                                        <MenuItem value={1}>One</MenuItem>
+                                        <MenuItem value={2}>Two</MenuItem>
+                                        <MenuItem value={3}>Three</MenuItem>
                                     </Select>
                                 </Grid>
                             </Grid>

@@ -99,7 +99,7 @@ const Cart = () => {
                 <CardContent>
                     <Grid container >
                         <FormGroup>
-                            <FormControlLabel control={<Checkbox checked={ecoChecked} value={2} onChange={(value) => handleChange(value)} />} label="Ecocart- carbon offsetting -2 USD" />
+                            <FormControlLabel className="grdCheck" control={<Checkbox checked={ecoChecked} value={2} onChange={(value) => handleChange(value)} />} label="Ecocart- carbon offsetting -2 USD" />
                         </FormGroup>
                     </Grid>
                     <Grid xs={12} container className="clsRadioButtonGroup">

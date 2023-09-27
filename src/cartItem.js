@@ -91,9 +91,7 @@ const CartItem = (props) => {
                             </Grid> */}
                         </Grid>
                         <Grid item xs={3} className="clsGridPrice">
-                            <span className="spnPrice">{`$ ${Number(unitTotal).toFixed(2)}`}</span>
-                            {/* <Grid><span>Unit Price</span> <span className="spnPrice">{`$ ${Number(unitPrice).toFixed(2)}`}</span></Grid>
-                            <Grid><span>Unit Total</span> <span className="spnPrice">{`$ ${Number(unitTotal).toFixed(2)}`}</span></Grid> */}
+                            <span className="spnPrice">{`${Number(unitPrice).toFixed(2)}`}</span>                           
                         </Grid>
                     </Grid>
                 </CardContent>

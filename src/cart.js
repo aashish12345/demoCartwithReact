@@ -47,25 +47,31 @@ const Cart = () => {
 
     const handleChange = (event) => {
         let ID = event.currentTarget.id;
-        let value = event.currentTarget.value;
+        let selectedVal = event.currentTarget.value;
         let item = ""
         if (event.currentTarget.type === "checkbox" && event.currentTarget.checked) {
             setEcoChecked(true);
-            setValue(5);
+            let selectedID = chkJson[0]._id;
+            let unitVal = chkJson[0].val;
+            let fPrice = parseInt(data[0].unitPrice) + parseInt(chkJson[0].val)
+            if (value === "") {
+                setValue(5);
+            } else {
+                selectedID = ID;
+                unitVal = value;
+                fPrice = parseInt(data[0].unitPrice) + parseInt(value);
+            }
             item = {
-                "_id": chkJson[0]._id,
+                "_id": selectedID,
                 "title": "Ecocart- carbon offsetting ",
                 "description": "",
                 "qantity": "1",
-                "unitPrice": chkJson[0].val,
+                "unitPrice": unitVal,
                 "imageUrl": "./logo4.jpeg",
             }
-            const fPrice = parseInt(data[0].unitPrice) + parseInt(chkJson[0].val)
             setFinalPrice(fPrice);
-
         } else if (event.currentTarget.type === "checkbox" && !event.currentTarget.checked) {
             setEcoChecked(false);
-            setValue("");
             item = "";
             const fPrice = parseInt(data[0].unitPrice);
             setFinalPrice(fPrice);
@@ -76,12 +82,16 @@ const Cart = () => {
                 "title": "Ecocart- carbon offsetting ",
                 "description": "",
                 "qantity": "1",
-                "unitPrice": value,
+                "unitPrice": selectedVal,
                 "imageUrl": "./logo4.jpeg",
             }
-            const fPrice = parseInt(data[0].unitPrice) + parseInt(value)
+            const fPrice = parseInt(data[0].unitPrice) + parseInt(selectedVal)
             setValue(event.target.value);
             setFinalPrice(fPrice);
+        } else if (event.currentTarget.type === "radio" && event.currentTarget.checked) {
+            debugger;
+            setValue(event.target.value);
+
         }
         setCheckedData(item);
     }
@@ -119,7 +129,9 @@ const Cart = () => {
                         <RadioGroup
                             aria-labelledby="demo-radio-buttons-group-label"
                             name="radio-buttons-group"
-                            value={value}>
+                            value={value}
+                            defaultValue={5}
+                        >
                             {
                                 chkJson.map((item) => {
                                     return <FormControlLabel control={<Radio value={item.val} id={item._id} onChange={(value) => handleChange(value)} />} label={item.text} />
@@ -131,7 +143,7 @@ const Cart = () => {
                     <Grid xs={12} className="clsGridPrice clsGridTotalPrice">
                         <Grid className="borderBottamDiv"> <span>Subtotal (Incl. VAT)</span> <span className="spnPrice">{`$ ${finalPrice.toFixed(2)}`}</span></Grid>
                         <Grid className="borderBottamDiv"> <span>Shipping</span> <span className="spnPrice">{ }</span></Grid>
-                        <Grid className="borderBottamDiv"> <span>VAT</span> <span className="spnPrice">{`$ ${vat.toFixed(2)}`}</span></Grid>
+                        {/* <Grid className="borderBottamDiv"> <span>VAT</span> <span className="spnPrice">{`$ ${vat.toFixed(2)}`}</span></Grid> */}
                         <Grid className="borderBottamDiv"> <span>TOTAL (EUR)</span> <span className="spnPrice">{`$ ${finalPrice.toFixed(2)}`}</span></Grid>
                     </Grid>
                     <Grid container>

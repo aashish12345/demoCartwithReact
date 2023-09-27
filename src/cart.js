@@ -47,7 +47,7 @@ const Cart = () => {
     const handleChange = (event) => {
         const ID = event.currentTarget.id;
         const value = event.currentTarget.value;
-        if (event.currentTarget.type === "checkbox") {
+        if (event.currentTarget.type === "checkbox" && event.currentTarget.checked) {
             setEcoChecked(true);
             setValue("");
         } else {
@@ -69,7 +69,7 @@ const Cart = () => {
         } else {
             setCheckedData("");
             const fPrice = parseInt(data[0].unitPrice) + parseInt(value)
-            setFinalPrice(fPrice);
+            setFinalPrice(fPrice);           
         }
     }
     return (

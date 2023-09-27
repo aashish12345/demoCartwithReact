@@ -1,7 +1,7 @@
 import CartItem from "./cartItem";
 import { useState } from "react";
 
-import { Card, Button, CardContent, Checkbox, Grid, FormGroup, FormControlLabel } from "@mui/material";
+import { Card, Button, CardContent, Checkbox, Grid, FormGroup, FormControlLabel, RadioGroup, Radio } from "@mui/material";
 const Cart = () => {
     const vat = 2.0;
     let data = [{
@@ -13,33 +13,46 @@ const Cart = () => {
         "imageUrl": "./shoeBoxNew.jpeg"
     }]
     const [jsonData, setJsonData] = useState(data)
+    const [checkedData, setCheckedData] = useState("")
     const [finalPrice, setFinalPrice] = useState(20);
+    const [ecoChecked, setEcoChecked] = useState(false);
+    const [value, setValue] = useState("");
 
     let chkJson = [{
         "_id": "64e5ff4fe3d35d1c40333a1de",
         "text": "Buy online pick up in stores/lockers - 12 grams of C02",
         "val": "1",
     }, {
-        "_id": "64e5ff4fe3d35d1cgg44a1de",
-        "text": "Ecocart- carbon offsetting -2 USD",
-        "val": "2",
-    }, {
         "_id": "64e5ff4fe3d35d1c404dd1de",
         "text": "Consolidate multiple orders -8 grams of CO2",
-        "val": "1",
+        "val": "3",
     }, {
         "_id": "64e5ff4fe3d35d1c4044a1ww",
         "text": "Standard delivery instead of same day delivery SDD/NDD -6 grams of Co2",
-        "val": "3",
+        "val": "4",
     }, {
         "_id": "64e5ff4few3d35d1c4044a1de",
         "text": "Normal delivery with all emissions",
-        "val": "1",
+        "val": "5",
     }]
+    function handleClick(event) {
+        if (event.target.value === value) {
+            setValue("");
+            setCheckedData("");
+            setFinalPrice(parseInt(data[0].unitPrice));
+        } else {
+            setValue(event.target.value);
+        }
+    }
     const handleChange = (event) => {
-        debugger;
         const ID = event.currentTarget.id;
         const value = event.currentTarget.value;
+        if (event.currentTarget.type === "checkbox") {
+            setEcoChecked(true);
+            setValue("");
+        } else {
+            setEcoChecked(false);
+        }
         if (event.currentTarget.checked) {
             const item = {
                 "_id": ID,
@@ -50,20 +63,15 @@ const Cart = () => {
                 "imageUrl": "./logo4.jpeg",
                 "isFixed": true
             }
-            setJsonData(current => [...current, item]);
-            setFinalPrice(finalPrice + parseInt(value));
+            setCheckedData(item);
+            const fPrice = parseInt(data[0].unitPrice) + parseInt(value)
+            setFinalPrice(fPrice);
         } else {
-            setJsonData(current =>
-                current.filter(item => {
-                    return item._id !== ID;
-                }),
-            );
+            setCheckedData("");
+            const fPrice = parseInt(data[0].unitPrice) + parseInt(value)
+            setFinalPrice(fPrice);
         }
-
-
     }
-
-
     return (
         <><div className="spnTotalCart">
             <span>{`Your Cart (${jsonData.length})`}</span>
@@ -82,21 +90,39 @@ const Cart = () => {
                     <span> Total</span>
                 </Grid>
             </Grid>
+            <CartItem item={data[0]} />
             {
-                jsonData.map((item) => {
-                    return (<CartItem item={item} />)
-                })
+                checkedData && <CartItem item={checkedData} />
+
             }
             <Card className="cartContainer">
                 <CardContent>
-                    <Grid xs={12} container>
+                    <Grid container >
                         <FormGroup>
+                            <FormControlLabel control={<Checkbox checked={ecoChecked} value={2} onChange={(value) => handleChange(value)} />} label="Ecocart- carbon offsetting -2 USD" />
+                        </FormGroup>
+                    </Grid>
+                    <Grid xs={12} container className="clsRadioButtonGroup">
+                        <RadioGroup
+                            aria-labelledby="demo-radio-buttons-group-label"
+                            name="radio-buttons-group"
+                            value={value}>
                             {
                                 chkJson.map((item) => {
-                                    return <FormControlLabel control={<Checkbox value={item.val} id={item._id} onChange={(value) => handleChange(value)} />} label={item.text} />
+                                    return <FormControlLabel control={<Radio onClick={handleClick} value={item.val} id={item._id} onChange={(value) => handleChange(value)} />} label={item.text} />
                                 })
                             }
-                        </FormGroup>
+                        </RadioGroup>
+                        {/* <RadioGroup
+                            aria-labelledby="demo-radio-buttons-group-label"
+                            defaultValue="female"
+                            name="radio-buttons-group"
+                        >
+                            <FormControlLabel value="female" control={<Radio />} label="Female" />
+                            <FormControlLabel value="male" control={<Radio />} label="Male" />
+                            <FormControlLabel value="other" control={<Radio />} label="Other" />
+                        </RadioGroup> */}
+
                     </Grid>
                     <Grid xs={12} className="clsGridPrice clsGridTotalPrice">
                         <Grid className="borderBottamDiv"> <span>Subtotal (Incl. VAT)</span> <span className="spnPrice">{`$ ${finalPrice.toFixed(2)}`}</span></Grid>
